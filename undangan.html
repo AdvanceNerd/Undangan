@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Dancing+Script&family=Lato&display=swap" rel="stylesheet">
+    <title>Undangan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .dark-mode .page.one,
+        .dark-mode .page.two,
+        .dark-mode .page.three {
+            background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2Zyc2t5X3N0YXJzX25pZ2h0X3NwYWNlLWltYWdlLWt5YmNwMmJmLmpwZw.jpg');
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            background-size: cover;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ddd;
+            transition: background-color 0.5s, color 0.5s;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        p,
+        h1,
+        h2 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .page.one {
+            font-size: 20pt;
+            font-family: 'Bitter', serif;
+            color: black;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROIlEvdxH7-s4WbUsivr6aj-E2GbfMUjW-6sYJKeT-eQkcd7WfbdKZyeJhFiTjvQHl_I0&usqp=CAU);
+            background-size: cover;
+        }
+
+        .page.one .title h1 {
+            font-size: 40pt;
+            font-family: 'Dancing Script', cursive;
+            /* color: gold; */
+            color: #91abc5;
+        }
+
+        .guest {
+            font-size: 15pt;
+            margin-top: 20px;
+        }
+
+        .page.two {
+            justify-content: space-evenly;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROIlEvdxH7-s4WbUsivr6aj-E2GbfMUjW-6sYJKeT-eQkcd7WfbdKZyeJhFiTjvQHl_I0&usqp=CAU');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Dancing Script', cursive;
+            font-size: 12pt;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .page.two .title h1 {
+            font-size: 35pt;
+            color: #91abc5;
+        }
+
+        .card {
+            padding: 15pt;
+            width: 100%;
+            max-width: 300px;
+            background-color: rgba(255, 250, 224, 0.9);
+            border-radius: 15px;
+            border: 2px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bitter', serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .card p {
+            color: inherit;
+        }
+        .carousel {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel img.hidden {
+            opacity: 0;
+        }
+
+        .line {
+            width: 100px;
+            height: 3px;
+            background-color: darkgray;
+            margin: 10px auto;
+        }
+
+        .page.three {
+            justify-content: center;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROIlEvdxH7-s4WbUsivr6aj-E2GbfMUjW-6sYJKeT-eQkcd7WfbdKZyeJhFiTjvQHl_I0&usqp=CAU);
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Dancing Script', cursive;
+            font-size: 20pt;
+            color: #34495e;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 20pt;
+            color: black;
+            font-family: 'Bitter', serif;
+        }
+
+        .image {
+            border-radius: 15px;
+            width: 100%;
+            height: 200px;
+            background-image: url(nzgzenni.png);
+            background-size: cover;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+        }
+
+        .h1 {
+            font-size: 20pt;
+            color: black;
+            font-family: 'Bitter', serif;
+        }
+
+        .countdown {
+            font-size: 32pt;
+            font-family: 'Bitter', monospace;
+            color: black;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown span {
+            background: rgba(255, 250, 224, 0.9);
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ddd;
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .navbar button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .navbar button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            /* position: absolute; */
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.5s, color 0.5s;
+            z-index: 1000;
+        }
+
+        .toggle-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .dark-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark-mode .page.one,
+        .dark-mode .page.two,
+        .dark-mode .page.three {
+            background-color: #34495e;
+        }
+
+        .dark-mode .card {
+            background-color: rgba(50, 50, 50, 0.8);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .countdown span {
+            background: rgba(50, 50, 50, 0.8);
+            color: #ecf0f1;
+        }
+
+        .dark-mode .navbar,
+        .dark-mode .toggle-btn {
+            background-color: white;
+            color: #2c3e50;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scrollFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: scrollFade 1s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .page {
+                padding: 10px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .carousel {
+                width: 120px;
+                height: 120px;
+            }
+
+            .countdown {
+                font-size: 24pt;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .countdown span {
+                min-width: unset;
+                width: 100%;
+                display: block;
+            }
+
+            .navbar {
+                flex-direction: row;
+                bottom: 10px;
+                top: unset;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown {
+                font-size: 18pt;
+            }
+        }
+        .dark-mode .msg1,
+        .dark-mode .count,
+        .dark-mode .wall{
+            color: #ecf0f1;
+        }
+        .dark-mode .wall {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR98c0mmbqxmTZlzawqg8QGBT6mb2N4eN8MfQ&s');
+            background-size: cover;
+        }
+        p,h1{
+            font-family: 'Dancing Script', cursive;
+        }
+        h1.inv{
+            color: #34495e;
+        }
+        body {
+    background-color: #f4f4f4;
+    background-image: url('https://i.pinimg.com/originals/0c/06/c0/0c06c04003e6befb4d0a63c1db071216.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+    .dark-mode {
+        background-color: #2c3e50;
+        background-image: url('https://img.freepik.com/free-photo/black-flower-card-ai-generated_268835-7008.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    body, .navbar, .toggle-btn {
+        transition: background-color 0.5s, color 0.5s;
+    }
+    .dark-mode .toggle-btn img {
+        content: url('https://img.icons8.com/ios-filled/50/000000/sun.png');
+    }
+    .dark-mode {
+        background-color: #2c3e50;
+        background-image: url('https://img.freepik.com/free-photo/black-flower-card-ai-generated_268835-7008.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .dark-mode .page,
+    .dark-mode .card,
+    .dark-mode .navbar,
+    .dark-mode .toggle-btn {
+        border: 2px solid #ddd; 
+        box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8); 
+    }
+
+    .dark-mode .page.one,
+    .dark-mode .page.two,
+    .dark-mode .page.three {
+        border: 2px solid #ddd; 
+        box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8); 
+    }
+    .dark-mode .page,
+    .dark-mode .card,
+    .dark-mode .navbar,
+    .dark-mode .toggle-btn {
+        border: 2px solid #ddd;
+        box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8); 
+    }
+    body:not(.dark-mode) .page,
+    body:not(.dark-mode) .card,
+    body:not(.dark-mode) .navbar,
+    body:not(.dark-mode) .toggle-btn {
+        border: 2px solid #ddd; 
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5); 
+    }
+    @media (max-width: 768px) {
+        .countdown {
+            font-size: 20pt;
+            flex-direction: row; 
+            gap: 5px; 
+        }
+
+        .countdown span {
+            padding: 6px 12px; 
+            min-width: 50px; 
+            text-align: center; 
+        }
+    }
+
+    @media (max-width: 480px) {
+        .countdown {
+            font-size: 16pt;
+        }
+
+        .countdown span {
+            padding: 4px 8px; 
+            min-width: 40px; 
+        }
+    }
+
+    .navbar button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.2s ease-in-out; 
+    }
+
+
+    .navbar button:active {
+        transform: scale(1.5);
+    }
+    .navbar button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.2s ease-in-out; 
+    }
+    .navbar button:hover {
+        transform: scale(1.2); 
+    }
+    .navbar button:active {
+        transform: scale(1.4); 
+    }
+
+    .toggle-btn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out; 
+    }
+    .toggle-btn:hover {
+        transform: scale(1.2); 
+    }
+    .toggle-btn:active {
+        transform: scale(1.4); 
+    }
+
+    .toggle-btn img {
+        width: 20px;
+        height: 20px;
+    }
+    body {
+        transition: background-color 1s ease, background-image 1s ease;
+    }
+    .dark-mode {
+        background-color: #2c3e50;
+        background-image: url('https://img.freepik.com/free-photo/black-flower-card-ai-generated_268835-7008.jpg');
+    }
+
+    .light-mode {
+        background-color: #f4f4f4;
+        background-image: url('https://i.pinimg.com/originals/0c/06/c0/0c06c04003e6befb4d0a63c1db071216.png');
+    }
+    .border-transition {
+        transition: border-color 1s ease;
+    }
+    .dark-mode .page, 
+    .dark-mode .card, 
+    .dark-mode .countdown span {
+        border-color: gold;
+    }
+
+    .light-mode .page, 
+    .light-mode .card, 
+    .light-mode .countdown span {
+        border-color: darkgray;
+    }
+
+    .navbar button, .toggle-btn {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .navbar button:active, .toggle-btn:active {
+        transform: scale(1.1);
+    }
+    .page {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .page.active {
+        opacity: 1;
+    }
+    .carousel img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    .carousel img.hidden {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    .dark-mode .page, 
+    .dark-mode .card, 
+    .dark-mode .navbar, 
+    .dark-mode .toggle-btn {
+        border: 2px solid gold;
+        box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8);
+        transition: box-shadow 0.5s ease;
+    }
+
+    .dark-mode .page:hover, 
+    .dark-mode .card:hover {
+        box-shadow: 0 0 15px 3px rgba(255, 215, 0, 0.9);
+    }
+    .carousel {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 2px solid #ddd; 
+        animation: glow-border 1.5s infinite; 
+    }
+    @keyframes glow-border {
+        0% {
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+        100% {
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    }
+    .carousel {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 2px solid #ddd; 
+        animation: glow-border 1.5s infinite; 
+    }
+    @keyframes glow-border {
+        0% {
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+        100% {
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    }
+    </style>
+</head>
+
+<body class="wall">
+    <div class="navbar">
+        <button onclick="scrollToSection('home')">
+            <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" />
+        </button>
+        <button onclick="scrollToSection('invitation')">
+            <img src="https://img.icons8.com/ios-filled/50/000000/mail.png" alt="Invitation" />
+        </button>
+        <button onclick="scrollToSection('timer')">
+            <img src="https://img.icons8.com/ios-filled/50/000000/clock.png" alt="Timer" />
+        </button>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()">
+        <img src="https://img.icons8.com/ios-filled/50/000000/moon.png" alt="Dark Mode" />
+    </button>
+
+    <div class="container">
+        <div id="home" class="page one fade-in">
+            <div class="title">
+                <h1>Welcome!</h1>
+            </div>
+            <p class="msg1">We are excited to invite you to our special event.</p>
+            <div class="guest">
+                <p class="msg1">John Doe</p>
+                <p class="msg1">Jane Smith</p>
+            </div>
+        </div>
+        <div id="invitation" class="page two fade-in">
+            <div class="title">
+                <h1 class="inv">Invitation</h1>
+            </div>
+            <div class="card">
+                <div class="carousel">
+                    <img src="https://static.vecteezy.com/system/resources/previews/021/505/864/original/bride-wedding-cartoon-illustration-png.png" alt="Bride">
+                    <img src="https://i.pinimg.com/736x/16/bb/df/16bbdfe161e9893e1828e2efbc684a61.jpg" alt="Wedding">
+                </div>
+                <div class="line"></div>
+                <p>Join us for a celebration!</p>
+                <p>Date: December 23, 2024</p>
+                <p>Location: 123 Celebration St.</p>
+            </div>
+        </div>
+        <div id="timer" class="page three fade-in">
+            <div class="title">
+                <h1 class="count">Countdown Timer</h1>
+            </div>
+            <div class="countdown">
+                <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    const toggleDarkMode = () => {
+        const body = document.body;
+        const isDarkMode = body.classList.contains('dark-mode');
+
+        body.classList.add('transition-effect');
+
+        if (isDarkMode) {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+        } else {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+        }
+
+        localStorage.setItem('darkMode', !isDarkMode);
+
+        setTimeout(() => {
+            body.classList.remove('transition-effect');
+        }, 1000); 
+    }
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.add('light-mode');
+    }
+    function updateCountdown() {
+        const endDate = new Date('2024-12-23T00:00:00');
+        const now = new Date();
+        const remaining = endDate - now;
+
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel img');
+    const totalImages = images.length;
+
+    function showImage(index) {
+        images.forEach((img, i) => {
+            img.classList.toggle('hidden', i !== index);
+        });
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        showImage(currentIndex);
+    }
+
+    setInterval(nextImage, 3000); 
+    showImage(currentIndex);
+
+    document.body.classList.add('transition-effect');
+    </script>
+</body>
+
+</html>
